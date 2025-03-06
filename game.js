@@ -10,13 +10,6 @@ function getComputerChoice() {
     return "Scissors";
 }
 
-function capitalize(str) {
-    first = str.charAt(0).toUpperCase();
-    remaining = str.substring(1).toLowerCase();
-
-    return first + remaining;
-}
-
 let humanScore = 0;
 let computerScore = 0;
 
@@ -26,6 +19,14 @@ function displayWinner(winner) {
 
     winnerDiv.textContent = `${winner} wins!`;
     body.appendChild(winnerDiv);
+
+    const rock = document.getElementById("rock");
+    const paper = document.getElementById("paper");
+    const scissors = document.getElementById("scissors");
+
+    body.removeChild(rock);
+    body.removeChild(paper);
+    body.removeChild(scissors);
 }
 
 function playRound(humanChoice) {
@@ -33,11 +34,12 @@ function playRound(humanChoice) {
 
     let computerChoice = getComputerChoice();
 
+    resultsDiv.textContent = `Player chose: ${humanChoice}, Computer chose: ${computerChoice}. `;
     if (humanChoice === "Rock" && computerChoice === "Scissors" ||
         humanChoice === "Scissors" && computerChoice === "Paper" ||
         humanChoice === "Paper" && computerChoice === "Rock") {
             humanScore++;
-            resultsDiv.textContent = `You win! ${humanChoice} beats ${computerChoice}.
+            resultsDiv.textContent += `You win! ${humanChoice} beats ${computerChoice}.
                                         Player: ${humanScore}, Computer: ${computerScore}`;
 
             if (humanScore === 5) {
@@ -48,14 +50,14 @@ function playRound(humanChoice) {
         computerChoice === "Scissors" && humanChoice === "Paper" ||
         computerChoice === "Paper" && humanChoice === "Rock") {
             computerScore++;
-            resultsDiv.textContent = `You lose! ${computerChoice} beats ${humanChoice}.
+            resultsDiv.textContent += `You lose! ${computerChoice} beats ${humanChoice}.
                                         Player: ${humanScore}, Computer: ${computerScore}`;
             if (computerScore === 5) {
                 displayWinner("Computer");
             }
         }
     else {
-        resultsDiv.textContent = `Tie! You both chose ${humanChoice}.
+        resultsDiv.textContent += `Tie! You both chose ${humanChoice}.
                                     Player: ${humanScore}, Computer: ${computerScore}`;
     }
 }
@@ -74,6 +76,10 @@ function playGame() {
     rock.addEventListener("click", () => playRound("Rock"));
     paper.addEventListener("click", () => playRound("Paper"));
     scissors.addEventListener("click", () => playRound("Scissors"));
+
+    rock.id = "rock";
+    paper.id = "paper";
+    scissors.id = "scissors";
 
     body.appendChild(rock);
     body.appendChild(paper);

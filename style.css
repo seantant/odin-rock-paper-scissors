@@ -1,0 +1,20 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(189, 220, 230);
+    margin: 0;
+}
+
+button {
+    border: solid 4px blue;
+    border-radius: 4px;
+    font-size: 24px;
+    margin: 8px;
+}
+
+div {
+    margin: 8px;
+    font-size: 20px;
+}
